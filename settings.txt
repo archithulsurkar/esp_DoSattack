@@ -1,0 +1,8 @@
+Board: Generic ESP8266 Module
+Flash Mode: DOUT
+Flash Frequency: 80 MHZ
+CPU Frequency: 160 MHz
+Flash Size: 1M (256K SPIFFS)
+Reset Method: nodemcu
+Upload Speed: 115200
+Port: <com port of your device>
