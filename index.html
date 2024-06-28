@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Router Flood Test</title>
+    <style>
+      /* Add some basic styling to the page */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        text-align: center; /* Add this to center the content */
+      }
+      
+      h1 {
+        color: #333;
+      }
+      
+      #flood-button {
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: inline-block; /* Add this to make the button an inline-block element */
+      }
+      
+      #flood-button:hover {
+        background-color: #3e8e41;
+      }
+      
+      #request-count {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Router Flood Test</h1>
+    <p>Click the button to send repeated HTTP requests to the target router.</p>
+    <button id="flood-button">Flood Router</button>
+    <div id="request-count">Requests sent: 0</div>
+
+    <script>
+      var floodButton = document.getElementById("flood-button");
+      var requestCountElement = document.getElementById("request-count");
+      var requestCount = 0;
+
+      floodButton.addEventListener("click", function() {
+        // Send a request to the ESP8266 to start the flood test
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/flood", true);
+        xhr.send();
+
+        // Update the request count
+        requestCount++;
+        requestCountElement.textContent = `Requests sent: ${requestCount}`;
+      });
+    </script>
+  </body>
+</html>
