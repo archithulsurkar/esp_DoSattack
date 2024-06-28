@@ -10,16 +10,24 @@ ESP8266WebServer server(80);
 void setup() {
   Serial.begin(115200);
 
-  // Connect to the WiFi network
-  WiFi.mode(WIFI_STA);
-  WiFi.begin(ssid, password);
-  while (WiFi.status()!= WL_CONNECTED) {
+  // Prompt user to input WiFi credentials
+  Serial.println("Enter WiFi SSID:");
+  String ssid = Serial.readStringUntil('\n');
+  Serial.println("Enter WiFi password:");
+  String password = Serial.readStringUntil('\n');
+
+  // Connect to WiFi using the input credentials
+  WiFi.begin(ssid.c_str(), password.c_str());
+  while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
     Serial.println("Connecting to WiFi...");
   }
   Serial.println("Connected to WiFi");
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
+
+  // Rest of the code...
+}
 
   // Get the IP address of the current connection's router
   IPAddress routerIP = WiFi.gatewayIP();
